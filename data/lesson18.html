@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // function docTitle() {setInterval(function() {
+    //   if (document.title === 'JS acing') {
+    //     document.title = '1st Milestone';
+    //   } else {
+    //     document.title = 'JS acing';
+    //   }
+    // }, 2000)
+    // }
+    // docTitle();
+   
+  
+    // const xhr = new XMLHttpRequest();
+    
+    // xhr.addEventListener('load', () => {
+    //   console.log(xhr.response);
+    // });
+    
+    // xhr.open('GET', 'https://supersimplebackend.dev/greeting');
+    // xhr.send();
+
+    // const promise = fetch('https://supersimplebackend.dev/greeting').then((response) => {
+    //   return response.text();
+    // }).then((textHello) => {
+    //   console.log(textHello);
+    // });
+
+    // async function func18() {
+    //   await fetch(
+    //     'https://supersimplebackend.dev/greeting'
+
+    //   ).then((response) => {
+    //   return response.text();
+
+    // }).then((textHello) => {
+    //   console.log(textHello);
+    // });
+    // }
+    // func18();
+
+    // async function postFun() {
+    //   await fetch('https://supersimplebackend.dev/greeting', {
+    //     method: 'POST',
+    //     body: JSON.stringify({
+    //       name: 'Azat'
+    //     })
+    //   }).then((response) => {
+    //     console.log(response);
+    //   })
+    // }
+    // postFun();
+
+    // async function errorHandling() { 
+    //   try {
+    //     await fetch('https://amazon.com');
+    // } catch (error) {
+    //   console.log('CORS error. Your request was blocked by the backend');
+    // }
+    // }
+    // errorHandling();
+
+    async function errorThrow() {
+      try {
+        const response = await fetch('https://supersimplebackend.dev/greeting', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.status >= 400) {
+          throw response;
+        }
+
+        const text = await response.text();
+        console.log(text);
+
+      } catch (error) {
+        if (error.status === 400) {
+          const message = await error.json();
+          console.log(message);
+        } else {
+          console.log('Network error. Please try again later.');
+        }
+      }
+    }
+    errorThrow();
+  </script>
+</body>
+</html>
